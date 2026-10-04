@@ -50,6 +50,19 @@ const portfolioUrlSchema = z
   .optional()
   .or(z.literal(''));
 
+const countrySchema = z
+  .string()
+  .min(1, 'Please select your country')
+  .max(100, 'Country name is too long')
+  .transform((val) => val.trim());
+
+const socialHandleSchema = z
+  .string()
+  .max(120, 'Must be at most 120 characters')
+  .optional()
+  .or(z.literal(''))
+  .transform((val) => (typeof val === 'string' ? val.trim() : val));
+
 const preferredSovietSchema = z.enum([
   'Agitprop & Counter-Propaganda Soviet',
   'AI & Software Soviet',
@@ -96,6 +109,7 @@ export const quizStepSchemas = {
   1: z.object({
     nickname: nicknameSchema,
     email: emailSchema,
+    country: countrySchema,
   }),
   2: z.object({
     proposalPosition: proposalPositionSchema,
@@ -112,6 +126,11 @@ export const quizStepSchemas = {
   6: z.object({
     experienceLevel: experienceLevelSchema,
     portfolioUrl: portfolioUrlSchema,
+    socialX: socialHandleSchema,
+    socialInstagram: socialHandleSchema,
+    socialTelegram: socialHandleSchema,
+    socialTiktok: socialHandleSchema,
+    socialLink: socialHandleSchema,
   }),
   7: z.object({
     preferredSoviet: preferredSovietSchema,
@@ -147,12 +166,18 @@ export const quizStepSchemas = {
 export const fullQuizSchema = z.object({
   nickname: nicknameSchema,
   email: emailSchema,
+  country: countrySchema,
   proposalPosition: proposalPositionSchema,
   motivationInterests: motivationInterestsSchema,
   weeklyAvailability: weeklyAvailabilitySchema,
   skills: skillsSchema,
   experienceLevel: experienceLevelSchema,
   portfolioUrl: portfolioUrlSchema,
+  socialX: socialHandleSchema,
+  socialInstagram: socialHandleSchema,
+  socialTelegram: socialHandleSchema,
+  socialTiktok: socialHandleSchema,
+  socialLink: socialHandleSchema,
   preferredSoviet: preferredSovietSchema,
   secondarySoviets: secondarySovietsSchema,
   delegateInterest: delegateInterestSchema,

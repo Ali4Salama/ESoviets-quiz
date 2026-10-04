@@ -6,7 +6,10 @@ import { QuestionCard } from '@/components/QuestionCard';
 import { SingleSelect } from '@/components/SingleSelect';
 import { MultiSelect } from '@/components/MultiSelect';
 import { TextQuestion } from '@/components/TextQuestion';
+import { CountrySelect } from '@/components/CountrySelect';
+import { SocialInputs } from '@/components/SocialInputs';
 import { validateStep, validateFullQuiz } from '@/lib/validation';
+import { COUNTRIES } from '@/lib/countries';
 import type { QuizResponse } from '@/lib/quizSchema';
 
 const TOTAL_STEPS = 15;
@@ -39,8 +42,8 @@ const getTotalUISteps = (delegateInterested: boolean): number => {
 const stepConfig = {
   1: {
     title: 'Basic Identity',
-    description: 'Let us know how to address you and how to reach you.',
-    fields: ['nickname', 'email'],
+    description: 'Let us know how to address you, how to reach you, and where you are based.',
+    fields: ['nickname', 'email', 'country'],
   },
   2: {
     title: 'Your Position',
@@ -64,8 +67,8 @@ const stepConfig = {
   },
   6: {
     title: 'Experience',
-    description: 'How would you describe your experience level?',
-    fields: ['experienceLevel', 'portfolioUrl'],
+    description: 'How would you describe your experience level? Link your work and public profiles.',
+    fields: ['experienceLevel', 'portfolioUrl', 'socialX', 'socialInstagram', 'socialTelegram', 'socialTiktok', 'socialLink'],
   },
   7: {
     title: 'Primary Soviet',
@@ -500,6 +503,15 @@ export default function QuizPage() {
               required
               helperText="Your email will be used only for project communication and participation follow-up."
             />
+            <CountrySelect
+              name="country"
+              label="Which country are you based in?"
+              value={answers.country || ''}
+              options={COUNTRIES}
+              onChange={v => updateAnswer('country', v)}
+              error={errors.country}
+              required
+            />
           </div>
         );
 
@@ -579,6 +591,23 @@ export default function QuizPage() {
               error={errors.portfolioUrl}
               required={false}
               helperText="GitHub, LinkedIn, personal website, publications, research profile"
+            />
+            <SocialInputs
+              values={{
+                socialX: answers.socialX || '',
+                socialInstagram: answers.socialInstagram || '',
+                socialTelegram: answers.socialTelegram || '',
+                socialTiktok: answers.socialTiktok || '',
+                socialLink: answers.socialLink || '',
+              }}
+              onChange={(field, v) => updateAnswer(field, v)}
+              errors={{
+                socialX: errors.socialX,
+                socialInstagram: errors.socialInstagram,
+                socialTelegram: errors.socialTelegram,
+                socialTiktok: errors.socialTiktok,
+                socialLink: errors.socialLink,
+              }}
             />
           </div>
         );

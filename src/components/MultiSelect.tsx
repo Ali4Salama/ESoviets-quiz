@@ -98,7 +98,7 @@ export function MultiSelect({
                   next.has(cat.category) ? next.delete(cat.category) : next.add(cat.category);
                   return next;
                 })}
-                className="w-full flex items-center justify-between gap-4 px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-700 hover:bg-gray-900/50 transition-colors text-left"
+                className="w-full flex items-center justify-between gap-4 px-4 py-3 rounded-xl bg-white/[0.04] backdrop-blur-md border border-white/10 hover:border-cyan-300/30 hover:bg-white/[0.07] transition-all duration-200 text-left"
                 aria-expanded={expandedCategories.has(cat.category)}
               >
                 <div className="flex items-center gap-3">
@@ -135,13 +135,13 @@ export function MultiSelect({
                   <label
                     key={option.value}
                     htmlFor={optionId}
-                    className={`relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] ${
+                    className={`relative flex items-center gap-4 p-5 rounded-2xl border-2 backdrop-blur-md transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] ${
                       disabled
-                        ? 'border-gray-700 bg-gray-800/30 opacity-50 cursor-not-allowed'
+                        ? 'border-white/10 bg-white/[0.02] opacity-50 cursor-not-allowed'
                         : value.includes(option.value)
-                        ? 'border-red-500 bg-red-500/10 bg-gradient-to-r from-red-500/5 to-transparent'
-                        : 'border-gray-700 bg-gray-900/30 hover:border-gray-500 hover:bg-gray-900/50'
-                    } focus-within:border-red-500 focus-within:bg-red-500/10 focus-within:ring-2 focus-within:ring-red-500/20 ${error && !cat.category ? 'border-red-500' : ''}`}
+                        ? 'border-red-500/70 bg-gradient-to-r from-red-500/15 to-fuchsia-500/10 shadow-[0_0_24px_rgba(220,38,38,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]'
+                        : 'border-white/10 bg-white/[0.03] hover:border-cyan-300/40 hover:bg-white/[0.06] hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]'
+                    } focus-within:border-cyan-300/60 focus-within:ring-2 focus-within:ring-cyan-400/25 ${error && !cat.category ? 'border-red-500' : ''}`}
                   >
                     <div className="flex items-center gap-3 flex-shrink-0">
                       <input

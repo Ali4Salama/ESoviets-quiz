@@ -89,14 +89,14 @@ export function TextQuestion({
           .filter(Boolean)
           .join(' ')}
         aria-invalid={error ? 'true' : 'false'}
-        className={`w-full min-h-[120px] px-4 py-3 rounded-xl border-2 bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black transition-all duration-200 resize-none ${
+        className={`w-full min-h-[120px] px-4 py-3 rounded-xl border-2 bg-black/40 backdrop-blur-md text-white placeholder-gray-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] focus:outline-none focus:ring-2 focus:ring-cyan-400/40 focus:border-cyan-300/60 focus:shadow-[0_0_24px_rgba(34,211,238,0.2)] transition-all duration-200 resize-none ${
           error
             ? 'border-red-500'
             : isAtLimit
             ? 'border-red-500'
             : isNearLimit
             ? 'border-yellow-500'
-            : 'border-gray-700 hover:border-gray-500'
+            : 'border-white/10 hover:border-white/25'
         }`}
       />
 

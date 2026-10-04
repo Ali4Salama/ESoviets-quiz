@@ -36,10 +36,10 @@ Follow these steps to configure Google Sheets as the backend for the E-Soviets q
 
 1. Go to [Google Sheets](https://sheets.google.com/)
 2. Create a new spreadsheet: "E-Soviets Responses"
-3. In row 1, add these 23 headers (exact order matters):
+3. In row 1, add these 28 headers (exact order matters):
 
 ```
-timestamp, participant_id, nickname, email, proposal_position, motivation_interests, weekly_availability, skills, experience_level, portfolio_url, preferred_soviet, secondary_soviets, delegate_interest, delegate_motivations, proposal_text, ai_robotics_proposal, first_month_actions, participation_modes, consent_contact, confirm_accuracy, public_profile_consent, user_agent
+timestamp, participant_id, nickname, email, country, proposal_position, motivation_interests, weekly_availability, skills, experience_level, portfolio_url, social_x, social_instagram, social_telegram, social_tiktok, social_link, preferred_soviet, secondary_soviets, delegate_interest, delegate_motivations, proposal_text, ai_robotics_proposal, first_month_actions, participation_modes, consent_contact, confirm_accuracy, public_profile_consent, user_agent
 ```
 
 4. Rename the sheet tab to `Responses` (or your preferred name)

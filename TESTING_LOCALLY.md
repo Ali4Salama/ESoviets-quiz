@@ -297,17 +297,23 @@ Expected: 413 "Payload too large"
 
 1. Open your Google Sheet
 2. Submit a test response via UI
-3. Verify new row appears with all 23 columns:
+3. Verify new row appears with all 28 columns:
    - timestamp (UTC ISO)
    - participant_id (ES-2026-XXXXXX)
    - nickname
    - email
+   - country
    - proposal_position (A-F)
    - motivation_interests (pipe-delimited)
    - weekly_availability
    - skills (pipe-delimited)
    - experience_level
    - portfolio_url
+   - social_x
+   - social_instagram
+   - social_telegram
+   - social_tiktok
+   - social_link
    - preferred_soviet
    - secondary_soviets (pipe-delimited)
    - delegate_interest (A-E)
