@@ -402,12 +402,27 @@ export default function QuizPage() {
       const data = await response.json();
 
       if (data.success) {
+        const duplicate = data.duplicateWarning ? '1' : undefined;
+        // Persist for /result fallback (refresh, blocked query params, etc.)
+        try {
+          sessionStorage.setItem(
+            'esoviets_result',
+            JSON.stringify({
+              participantId: data.participantId,
+              nickname: data.nickname,
+              preferredSoviet: data.preferredSoviet,
+              duplicate,
+            })
+          );
+        } catch {
+          // sessionStorage may be unavailable (private mode) — URL params remain primary
+        }
         const params = new URLSearchParams({
           pid: data.participantId,
           nickname: data.nickname,
           soviet: data.preferredSoviet,
         });
-        if (data.duplicateWarning) {
+        if (duplicate) {
           params.set('duplicate', '1');
         }
         // Use window.location.href as fallback for production reliability
