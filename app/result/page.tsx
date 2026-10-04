@@ -39,6 +39,7 @@ export default function ResultPage({ searchParams }: ResultPageProps) {
       const soviet = params.soviet;
       const duplicate = params.duplicate;
 
+      // Try URL params first
       if (pid && nickname && soviet) {
         setState({
           data: {
@@ -49,13 +50,42 @@ export default function ResultPage({ searchParams }: ResultPageProps) {
           error: null,
           duplicateWarning: duplicate === '1',
         });
-      } else {
-        setState({
-          data: null,
-          error: 'Missing participant data. Please complete the questionnaire first.',
-          duplicateWarning: false,
-        });
+        return;
       }
+
+      // Fallback: try to get data from sessionStorage if URL params missing
+      try {
+        const stored = sessionStorage.getItem('esoviets_result');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          const pid = parsed.participantId;
+          const nickname = parsed.nickname;
+          const soviet = parsed.preferredSoviet;
+          const duplicate = parsed.duplicate;
+
+          if (pid && nickname && soviet) {
+            setState({
+              data: {
+                participantId: pid,
+                nickname: decodeURIComponent(nickname),
+                preferredSoviet: decodeURIComponent(soviet),
+              },
+              error: null,
+              duplicateWarning: duplicate === '1',
+            });
+            return;
+          }
+        }
+      } catch (e) {
+        console.error('Failed to parse sessionStorage:', e);
+      }
+
+      // No data available
+      setState({
+        data: null,
+        error: 'Missing participant data. Please complete the questionnaire first.',
+        duplicateWarning: false,
+      });
     };
     loadData();
   }, [searchParams]);
