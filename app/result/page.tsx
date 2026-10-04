@@ -23,9 +23,13 @@ interface ResultPageProps {
   searchParams: Promise<{ pid?: string; nickname?: string; soviet?: string; duplicate?: string }>;
 }
 
-export default function ResultPage({ searchParams }: ResultPageProps) {
+export default function ResultPage({ searchParams }: { searchParams: Promise<{ pid?: string; nickname?: string; soviet?: string; duplicate?: string }> }) {
   const router = useRouter();
-  const [state, setState] = useState<ResultPageState>({
+  const [state, setState] = useState<{
+    data: { participantId: string; nickname: string; preferredSoviet: string } | null;
+    error: string | null;
+    duplicateWarning: boolean;
+  }>({
     data: null,
     error: null,
     duplicateWarning: false,
@@ -87,12 +91,12 @@ export default function ResultPage({ searchParams }: ResultPageProps) {
         duplicateWarning: false,
       });
     };
+
     loadData();
-  }, [searchParams]);
+  }, []);
 
   const handleEdit = () => {
-    router.push('/quiz');
-    router.refresh();
+    window.location.href = '/quiz';
   };
 
   const handleDownload = () => {
@@ -116,12 +120,12 @@ export default function ResultPage({ searchParams }: ResultPageProps) {
           <div className="max-w-md w-full text-center space-y-6">
             <h1 className="text-2xl font-bold">Unable to Load Card</h1>
             <p className="text-gray-400">{state.error}</p>
-            <Link
-              href="/quiz"
+            <button
+              onClick={() => window.location.href = '/quiz'}
               className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-red-600 rounded-xl hover:bg-red-500 transition-colors min-h-[48px] touch-manipulation"
             >
               Start Questionnaire
-            </Link>
+            </button>
           </div>
         </div>
       </main>
@@ -182,17 +186,17 @@ export default function ResultPage({ searchParams }: ResultPageProps) {
 
           <div className="space-y-3 p-6 rounded-2xl bg-gray-900/50 border border-gray-800">
             <div className="text-sm text-gray-400 uppercase tracking-wider">Nickname</div>
-            <div className="text-xl font-bold text-white">"{state.data.nickname}"</div>
+            <div className="text-xl font-bold text-white">{state.data?.nickname}</div>
             <div className="text-sm text-gray-400 uppercase tracking-wider mt-4">Participant Number</div>
-            <div className="text-lg font-mono text-red-400">{state.data.participantId}</div>
+            <div className="text-lg font-mono text-red-400">{state.data?.participantId}</div>
             <div className="text-sm text-gray-400 uppercase tracking-wider mt-4">Preferred Soviet</div>
-            <div className="text-lg font-medium text-white">{state.data.preferredSoviet}</div>
+            <div className="text-lg font-medium text-white">{state.data?.preferredSoviet}</div>
           </div>
 
           <ParticipantCard
-            nickname={state.data.nickname}
-            participantId={state.data.participantId}
-            preferredSoviet={state.data.preferredSoviet}
+            nickname={state.data?.nickname || ''}
+            participantId={state.data?.participantId || ''}
+            preferredSoviet={state.data?.preferredSoviet || ''}
             onDownload={handleDownload}
             onShare={handleShare}
           />
@@ -227,4 +231,16 @@ export default function ResultPage({ searchParams }: ResultPageProps) {
       </footer>
     </main>
   );
+}
+
+interface ResultData {
+  participantId: string;
+  nickname: string;
+  preferredSoviet: string;
+}
+
+interface ResultPageState {
+  data: ResultData | null;
+  error: string | null;
+  duplicateWarning: boolean;
 }
