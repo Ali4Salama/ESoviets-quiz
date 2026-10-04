@@ -410,7 +410,15 @@ export default function QuizPage() {
         if (data.duplicateWarning) {
           params.set('duplicate', '1');
         }
-        router.push(`/result?${params.toString()}`);
+        // Use window.location.href as fallback for production reliability
+        const resultUrl = `/result?${params.toString()}`;
+        router.push(resultUrl);
+        // Fallback for production if router.push doesn't work
+        setTimeout(() => {
+          if (window.location.pathname === '/quiz') {
+            window.location.href = resultUrl;
+          }
+        }, 100);
       } else {
         setSubmitError(data.error || 'Submission failed. Please try again.');
         if (data.errors) setErrors(data.errors);
