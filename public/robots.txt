@@ -1,0 +1,9 @@
+# E-Soviets Quiz - Robots.txt
+# Disallow quiz and result pages from indexing
+User-agent: *
+Allow: /
+Disallow: /quiz/
+Disallow: /result/
+Disallow: /api/
+
+Sitemap: https://e-soviets.vercel.app/sitemap.xml

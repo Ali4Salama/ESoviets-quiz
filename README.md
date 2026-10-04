@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-Soviets Quiz
 
-## Getting Started
+A participant intake questionnaire for the E-Soviets digital organization proposal. Collects interest, skills, availability, preferred Soviet, and project proposals from potential participants.
 
-First, run the development server:
+> **Important**: This application collects participant interest and organizational information. Completing the questionnaire does not itself appoint a participant as a delegate or representative.
+
+## Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Run production server
+npm start
+
+# Lint code
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file with the following variables (see `.env.example`):
 
-## Learn More
+| Variable | Description |
+|----------|-------------|
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Service account email from Google Cloud |
+| `GOOGLE_PRIVATE_KEY` | Service account private key (with newlines) |
+| `GOOGLE_SHEET_ID` | Google Sheet ID from URL |
+| `GOOGLE_SHEET_NAME` | Sheet tab name (default: `Responses`) |
 
-To learn more about Next.js, take a look at the following resources:
+## Setup Guides
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Google Sheets Setup](GOOGLE_SHEETS_SETUP.md) - Configure Google Cloud & Sheets
+- [Vercel Deployment](VERCEL_DEPLOY.md) - Deploy to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+e-soviets-quiz/
+├── app/
+│   ├── page.tsx              # Landing page
+│   ├── quiz/page.tsx         # Multi-step questionnaire
+│   ├── result/page.tsx       # Participant card display
+│   └── api/submit/route.ts   # Submission API endpoint
+├── components/
+│   ├── QuizProgress.tsx      # Progress indicator
+│   ├── QuestionCard.tsx      # Question wrapper
+│   ├── SingleSelect.tsx      # Radio button group
+│   ├── MultiSelect.tsx       # Checkbox group (categorized)
+│   ├── TextQuestion.tsx      # Textarea with char counter
+│   ├── ParticipantCard.tsx   # SVG card generator
+│   └── SovietsGrid.tsx       # Landing page Soviet cards
+├── lib/
+│   ├── googleSheets.ts       # Sheets API client
+│   ├── participantId.ts      # ID generator
+│   ├── validation.ts         # Zod schemas
+│   └── quizSchema.ts         # TypeScript types
+├── public/
+├── .env.example
+├── vercel.json
+└── package.json
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Validation**: Zod
+- **Storage**: Google Sheets API
+- **Deployment**: Vercel
+- **Image Generation**: SVG + Canvas API
+
+## Features
+
+- 15-step questionnaire with progress tracking
+- Conditional questions (delegate motivations)
+- Categorized skills selection (5 categories, max 15)
+- Server-side validation & sanitization
+- Unique participant IDs (`ES-2026-XXXXXX`)
+- Participant card generation (SVG → PNG)
+- Download & share (Web Share API + fallback)
+- Rate limiting & honeypot anti-spam
+- WCAG AA accessibility
+- Dark theme with red accent
+
+## Deployment
+
+See [Vercel Deployment Guide](VERCEL_DEPLOY.md) for step-by-step instructions.
+
+## License
+
+MIT
