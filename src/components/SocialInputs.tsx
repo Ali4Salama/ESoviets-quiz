@@ -105,21 +105,13 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
                     error
                       ? 'border-red-700 bg-red-50 text-red-800 dark:border-red-500 dark:bg-red-500/10 dark:text-red-300'
                       : filled
-                        ? 'border-red-800 bg-red-800 text-amber-50 shadow-[2px_2px_0_rgba(28,25,23,0.9)] dark:border-red-400 dark:bg-red-500 dark:text-white dark:shadow-[0_0_14px_rgba(239,68,68,0.5)]'
+                        ? 'border-emerald-800 bg-emerald-800 text-white shadow-[2px_2px_0_rgba(28,25,23,0.9)] dark:border-emerald-400 dark:bg-emerald-500 dark:shadow-[0_0_14px_rgba(52,211,153,0.5)]'
                         : 'border-stone-900/25 bg-white text-stone-500 dark:border-white/10 dark:bg-black/40 dark:text-gray-400'
                   }`}
                 >
                   {field.icon}
                 </span>
                 {field.label}
-                {filled && !error && (
-                  <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-800 text-amber-50 dark:bg-red-500 dark:text-white">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    Linked
-                  </span>
-                )}
               </label>
               <div className="relative">
                 <input
@@ -135,14 +127,14 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
                     error
                       ? 'bg-red-50 border-red-700 dark:bg-black/40 dark:border-red-500'
                       : filled
-                        ? 'bg-red-50/60 border-red-800/60 shadow-[inset_2px_2px_0_rgba(153,27,27,0.12)] dark:bg-red-500/[0.07] dark:border-red-400/60'
+                        ? 'bg-emerald-50 border-emerald-800 shadow-[inset_2px_2px_0_rgba(6,95,70,0.15)] dark:bg-emerald-500/[0.08] dark:border-emerald-400/70'
                         : 'bg-white border-stone-900/25 dark:bg-black/40 dark:border-white/10'
                   }`}
                 />
                 {filled && !error && (
                   <span
                     aria-hidden="true"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full bg-red-800 text-amber-50 dark:bg-red-500 dark:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full bg-emerald-800 text-white dark:bg-emerald-500"
                   >
                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
