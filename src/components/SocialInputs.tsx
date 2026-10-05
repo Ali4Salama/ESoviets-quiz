@@ -78,7 +78,7 @@ const FIELDS: {
 
 export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProps) {
   return (
-    <div className="w-full rounded-2xl border-2 border-dashed border-stone-900/30 bg-[#fbf7ec] p-5 space-y-4 dark:border-white/10 dark:border-solid dark:bg-gradient-to-b dark:from-white/[0.05] dark:to-transparent dark:backdrop-blur-md dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+    <div className="w-full rounded-2xl border-2 border-dashed border-stone-900/30 bg-[#fbf7ec] p-5 space-y-4 dark:border-white/20 dark:border-solid dark:bg-white/[0.06] dark:backdrop-blur-md dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_28px_rgba(0,0,0,0.45)]">
       <div className="flex items-center justify-between gap-3">
         <p className="font-display text-lg font-bold text-stone-900 dark:text-base dark:font-semibold dark:text-white dark:font-sans dark:tracking-wide">
           Social accounts <span className="font-mono text-xs ml-1 text-red-800 dark:text-cyan-300/90">OPTIONAL</span>
@@ -103,10 +103,10 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
                   aria-hidden="true"
                   className={`flex items-center justify-center w-8 h-8 rounded-lg border-2 transition-all duration-200 ${
                     error
-                      ? 'border-red-700 bg-red-50 text-red-800 dark:border-red-500 dark:bg-red-500/10 dark:text-red-300'
+                      ? 'border-red-700 bg-red-50 text-red-800 dark:border-red-400 dark:bg-red-400/15 dark:text-red-200'
                       : filled
-                        ? 'border-emerald-800 bg-emerald-800 text-white shadow-[2px_2px_0_rgba(28,25,23,0.9)] dark:border-emerald-400 dark:bg-emerald-500 dark:shadow-[0_0_14px_rgba(52,211,153,0.5)]'
-                        : 'border-stone-900/25 bg-white text-stone-500 dark:border-white/10 dark:bg-black/40 dark:text-gray-400'
+                        ? 'border-emerald-800 bg-emerald-800 text-white shadow-[2px_2px_0_rgba(28,25,23,0.9)] dark:border-emerald-300 dark:bg-emerald-400 dark:text-emerald-950 dark:shadow-[0_0_16px_rgba(52,211,153,0.55)]'
+                        : 'border-stone-900/25 bg-white text-stone-500 dark:border-white/25 dark:bg-white/10 dark:text-gray-200'
                   }`}
                 >
                   {field.icon}
@@ -123,18 +123,18 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
                   onChange={(e) => onChange(field.key, e.target.value)}
                   placeholder={field.placeholder}
                   aria-invalid={error ? 'true' : 'false'}
-                  className={`w-full pl-4 pr-11 py-3 rounded-xl border-2 text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:text-white dark:placeholder-gray-500 dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/25 dark:focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:hover:border-white/25 ${
+                  className={`w-full pl-4 pr-11 py-3 rounded-xl border-2 text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-300 dark:focus:ring-cyan-300/30 dark:focus:shadow-[0_0_22px_rgba(34,211,238,0.3)] dark:hover:border-white/30 ${
                     error
-                      ? 'bg-red-50 border-red-700 dark:bg-black/40 dark:border-red-500'
+                      ? 'bg-red-50 border-red-700 dark:bg-red-400/10 dark:border-red-400'
                       : filled
-                        ? 'bg-emerald-50 border-emerald-800 shadow-[inset_2px_2px_0_rgba(6,95,70,0.15)] dark:bg-emerald-500/[0.08] dark:border-emerald-400/70'
-                        : 'bg-white border-stone-900/25 dark:bg-black/40 dark:border-white/10'
+                        ? 'bg-emerald-50 border-emerald-800 shadow-[inset_2px_2px_0_rgba(6,95,70,0.15)] dark:bg-emerald-400/[0.12] dark:border-emerald-300'
+                        : 'bg-white border-stone-900/25 dark:bg-white/[0.08] dark:border-white/25'
                   }`}
                 />
                 {filled && !error && (
                   <span
                     aria-hidden="true"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full bg-emerald-800 text-white dark:bg-emerald-500"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full bg-emerald-800 text-white dark:bg-emerald-400 dark:text-emerald-950"
                   >
                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -152,7 +152,7 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
         })}
       </div>
 
-      <p className="hand-note text-xs text-stone-500 leading-relaxed dark:text-gray-500 dark:not-italic dark:font-sans">
+      <p className="hand-note text-xs text-stone-500 leading-relaxed dark:text-gray-400 dark:not-italic dark:font-sans">
         Share only public profiles you are comfortable being contacted through. Handles (e.g. @nova) or full URLs both work.
       </p>
     </div>
