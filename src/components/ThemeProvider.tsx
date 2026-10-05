@@ -14,12 +14,13 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-
-  // Sync with the class set by the blocking script in <head> on first paint.
-  useEffect(() => {
-    setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-  }, []);
+  // Lazily sync with the class set by the blocking script in <head> so the
+  // first client render already matches what was painted (no extra render).
+  const [theme, setTheme] = useState<Theme>(() =>
+    typeof document !== 'undefined' && !document.documentElement.classList.contains('dark')
+      ? 'light'
+      : 'dark'
+  );
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');

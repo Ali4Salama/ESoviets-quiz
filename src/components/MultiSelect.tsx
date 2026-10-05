@@ -135,16 +135,25 @@ export function MultiSelect({
                   <label
                     key={option.value}
                     htmlFor={optionId}
-                    className={`relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] dark:backdrop-blur-md ${
+                    className={`relative flex items-center gap-3 pl-3 pr-5 py-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] overflow-hidden dark:backdrop-blur-md ${
                       error && !cat.category
                         ? 'border-red-700 bg-red-50 dark:border-red-500 dark:bg-red-500/10'
                         : disabled
                           ? 'bg-stone-100 border-stone-900/20 opacity-50 cursor-not-allowed dark:bg-white/[0.02] dark:border-white/10'
                           : value.includes(option.value)
-                            ? 'border-red-800 bg-red-50 shadow-[3px_3px_0_rgba(28,25,23,0.9)] dark:border-red-500/70 dark:bg-gradient-to-r dark:from-red-500/15 dark:to-fuchsia-500/10 dark:shadow-[0_0_24px_rgba(220,38,38,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]'
+                            ? 'border-red-800 bg-red-50 shadow-[3px_3px_0_rgba(28,25,23,0.9)] ring-2 ring-red-800/25 dark:border-red-400 dark:bg-gradient-to-r dark:from-red-500/20 dark:to-fuchsia-500/10 dark:shadow-[0_0_28px_rgba(220,38,38,0.3),inset_0_1px_0_rgba(255,255,255,0.08)] dark:ring-2 dark:ring-red-400/30'
                             : 'bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] dark:bg-white/[0.03] dark:hover:border-cyan-300/40 dark:hover:bg-white/[0.06] dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]'
                     } focus-within:border-red-800 dark:focus-within:border-cyan-300/60 dark:focus-within:ring-2 dark:focus-within:ring-cyan-400/25`}
                   >
+                    {/* Selection accent bar — always rendered so layout never shifts */}
+                    <span
+                      aria-hidden="true"
+                      className={`w-1.5 self-stretch rounded-full transition-colors duration-200 ${
+                        !disabled && value.includes(option.value)
+                          ? 'bg-red-800 dark:bg-red-400'
+                          : 'bg-stone-900/10 dark:bg-white/10'
+                      }`}
+                    />
                     <div className="flex items-center gap-3 flex-shrink-0">
                       <input
                         type="checkbox"
@@ -163,12 +172,12 @@ export function MultiSelect({
                         className="sr-only peer"
                         required={required_ && catIndex === 0 && optIndex === 0}
                       />
-                      <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                      <div className={`rounded-lg border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
                         disabled
-                          ? 'bg-stone-100 border-stone-400 dark:bg-gray-800 dark:border-gray-600'
-                          : value.includes(option.value)
-                            ? 'border-red-800 bg-red-800 dark:border-red-500 dark:bg-red-500 dark:shadow-[0_0_0_2px_rgba(204,0,0,0.3)]'
-                            : 'bg-white border-stone-500 hover:border-stone-900 dark:bg-gray-800 dark:border-gray-500 dark:hover:border-gray-400'
+                          ? 'w-6 h-6 bg-stone-100 border-stone-400 dark:bg-gray-800 dark:border-gray-600'
+                          : selected
+                            ? 'w-7 h-7 border-red-800 bg-red-800 shadow-[0_0_12px_rgba(153,27,27,0.5)] dark:border-red-400 dark:bg-red-500 dark:shadow-[0_0_16px_rgba(239,68,68,0.6)]'
+                            : 'w-6 h-6 bg-white border-stone-500 hover:border-stone-900 dark:bg-gray-800 dark:border-gray-500 dark:hover:border-gray-400'
                       }`} aria-hidden="true">
                         {value.includes(option.value) && (
                           <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -177,8 +186,18 @@ export function MultiSelect({
                         )}
                       </div>
                     </div>
-                    <div className="flex-1 min-w-0 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-700 peer-focus:ring-offset-2 peer-focus:ring-offset-white dark:peer-focus:ring-red-500 dark:peer-focus:ring-offset-black rounded-xl py-1">
-                      <span className={`font-medium text-stone-900 dark:text-white ${disabled ? 'text-stone-400 dark:text-gray-500' : ''}`}>{option.label}</span>
+                    <div className="flex-1 min-w-0 rounded-xl py-1">
+                      <span className="flex items-center gap-2 flex-wrap">
+                        <span className={`font-medium text-stone-900 dark:text-white ${disabled ? 'text-stone-400 dark:text-gray-500' : ''}`}>{option.label}</span>
+                        {!disabled && selected && (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-800 text-amber-50 dark:bg-red-500 dark:text-white">
+                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            Selected
+                          </span>
+                        )}
+                      </span>
                     </div>
                     <div className="flex-shrink-0 w-8 h-8 rounded-xl bg-gradient-to-br from-red-500/10 to-transparent border border-red-500/20 opacity-0 peer-hover:opacity-100 peer-focus:opacity-100 transition-opacity duration-200" aria-hidden="true">
                       {value.includes(option.value) && (

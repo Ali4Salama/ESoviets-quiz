@@ -92,28 +92,64 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
       <div className="grid gap-3">
         {FIELDS.map((field) => {
           const error = errors[field.key];
+          const filled = values[field.key].trim() !== '';
           return (
             <div key={field.key}>
               <label
                 htmlFor={`social-${field.key}`}
                 className="mb-1.5 flex items-center gap-2 text-sm font-medium text-stone-800 dark:text-gray-200"
               >
-                <span className="text-red-800 dark:text-cyan-300/90">{field.icon}</span>
+                <span
+                  aria-hidden="true"
+                  className={`flex items-center justify-center w-8 h-8 rounded-lg border-2 transition-all duration-200 ${
+                    error
+                      ? 'border-red-700 bg-red-50 text-red-800 dark:border-red-500 dark:bg-red-500/10 dark:text-red-300'
+                      : filled
+                        ? 'border-red-800 bg-red-800 text-amber-50 shadow-[2px_2px_0_rgba(28,25,23,0.9)] dark:border-red-400 dark:bg-red-500 dark:text-white dark:shadow-[0_0_14px_rgba(239,68,68,0.5)]'
+                        : 'border-stone-900/25 bg-white text-stone-500 dark:border-white/10 dark:bg-black/40 dark:text-gray-400'
+                  }`}
+                >
+                  {field.icon}
+                </span>
                 {field.label}
+                {filled && !error && (
+                  <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-800 text-amber-50 dark:bg-red-500 dark:text-white">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Linked
+                  </span>
+                )}
               </label>
-              <input
-                id={`social-${field.key}`}
-                name={field.key}
-                type="text"
-                value={values[field.key]}
-                maxLength={120}
-                onChange={(e) => onChange(field.key, e.target.value)}
-                placeholder={field.placeholder}
-                aria-invalid={error ? 'true' : 'false'}
-                className={`w-full px-4 py-3 rounded-xl border-2 text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:text-white dark:placeholder-gray-500 dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/25 dark:focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:hover:border-white/25 ${
-                  error ? 'bg-red-50 border-red-700 dark:bg-black/40 dark:border-red-500' : 'bg-white border-stone-900/25 dark:bg-black/40 dark:border-white/10'
-                }`}
-              />
+              <div className="relative">
+                <input
+                  id={`social-${field.key}`}
+                  name={field.key}
+                  type="text"
+                  value={values[field.key]}
+                  maxLength={120}
+                  onChange={(e) => onChange(field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                  aria-invalid={error ? 'true' : 'false'}
+                  className={`w-full pl-4 pr-11 py-3 rounded-xl border-2 text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:text-white dark:placeholder-gray-500 dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/25 dark:focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:hover:border-white/25 ${
+                    error
+                      ? 'bg-red-50 border-red-700 dark:bg-black/40 dark:border-red-500'
+                      : filled
+                        ? 'bg-red-50/60 border-red-800/60 shadow-[inset_2px_2px_0_rgba(153,27,27,0.12)] dark:bg-red-500/[0.07] dark:border-red-400/60'
+                        : 'bg-white border-stone-900/25 dark:bg-black/40 dark:border-white/10'
+                  }`}
+                />
+                {filled && !error && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full bg-red-800 text-amber-50 dark:bg-red-500 dark:text-white"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                )}
+              </div>
               {error && (
                 <p className="mt-1.5 text-sm font-medium text-red-800 dark:text-red-300" role="alert">
                   {error}

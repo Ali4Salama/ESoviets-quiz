@@ -48,9 +48,7 @@ export function CountrySelect({
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
-  useEffect(() => {
-    setHighlight(0);
-  }, [query]);
+
 
   const select = (country: string) => {
     onChange(country);
@@ -105,13 +103,18 @@ export function CountrySelect({
           placeholder={value && !open ? value : placeholder}
           onChange={(e) => {
             setQuery(e.target.value);
+            setHighlight(0);
             setOpen(true);
             if (value) onChange('');
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={handleKeyDown}
           className={`w-full pl-12 pr-11 py-3.5 rounded-xl border-2 text-stone-900 placeholder-stone-400 shadow-[inset_2px_2px_0_rgba(28,25,23,0.06)] outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/30 hover:border-stone-900/60 dark:backdrop-blur-md dark:text-white dark:placeholder-gray-500 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/30 dark:focus:shadow-[0_0_24px_rgba(34,211,238,0.25)] dark:hover:border-white/25 ${
-            error ? 'bg-red-50 border-red-700 dark:bg-white/[0.04] dark:border-red-500' : 'bg-white border-stone-900/25 dark:bg-white/[0.04] dark:border-white/10'
+            error
+              ? 'bg-red-50 border-red-700 dark:bg-white/[0.04] dark:border-red-500'
+              : value && !open
+                ? 'bg-red-50/60 border-red-800/60 shadow-[3px_3px_0_rgba(28,25,23,0.9)] dark:bg-red-500/[0.07] dark:border-red-400/60 dark:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                : 'bg-white border-stone-900/25 dark:bg-white/[0.04] dark:border-white/10'
           }`}
         />
         {value && !open ? (

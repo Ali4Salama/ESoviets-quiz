@@ -34,6 +34,9 @@ export default function ResultClient() {
     duplicateWarning: false,
   });
 
+  // Intentional client-only load: sessionStorage doesn't exist during SSR, so the
+  // initial (loading) state must match the server render and fill in on mount.
+  /* eslint-disable react-hooks/set-state-in-effect -- see above */
   useEffect(() => {
     const pid = searchParams.get('pid');
     const nickname = searchParams.get('nickname');

@@ -449,7 +449,7 @@ export default function QuizPage() {
   }, [answers, router]);
 
   const goBack = useCallback(() => {
-    let prevStep = currentStep - 1;
+    const prevStep = currentStep - 1;
     if (prevStep >= 1) {
       setCurrentStep(prevStep);
       window.scrollTo(0, 0);
