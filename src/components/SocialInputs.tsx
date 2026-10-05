@@ -78,13 +78,13 @@ const FIELDS: {
 
 export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProps) {
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent backdrop-blur-md p-5 space-y-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+    <div className="w-full rounded-2xl border-2 border-dashed border-stone-900/30 bg-[#fbf7ec] p-5 space-y-4 dark:border-white/10 dark:border-solid dark:bg-gradient-to-b dark:from-white/[0.05] dark:to-transparent dark:backdrop-blur-md dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-base font-semibold text-white tracking-wide">
-          Social accounts <span className="text-cyan-300/90 font-mono text-xs ml-1">OPTIONAL</span>
+        <p className="font-display text-lg font-bold text-stone-900 dark:text-base dark:font-semibold dark:text-white dark:font-sans dark:tracking-wide">
+          Social accounts <span className="font-mono text-xs ml-1 text-red-800 dark:text-cyan-300/90">OPTIONAL</span>
         </p>
-        <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-gray-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" aria-hidden="true" />
+        <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-stone-500 dark:text-gray-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-800 dark:bg-cyan-400 animate-pulse" aria-hidden="true" />
           handles or links
         </span>
       </div>
@@ -96,9 +96,9 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
             <div key={field.key}>
               <label
                 htmlFor={`social-${field.key}`}
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-gray-200"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-stone-800 dark:text-gray-200"
               >
-                <span className="text-cyan-300/90">{field.icon}</span>
+                <span className="text-red-800 dark:text-cyan-300/90">{field.icon}</span>
                 {field.label}
               </label>
               <input
@@ -110,12 +110,12 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
                 onChange={(e) => onChange(field.key, e.target.value)}
                 placeholder={field.placeholder}
                 aria-invalid={error ? 'true' : 'false'}
-                className={`w-full px-4 py-3 rounded-xl border-2 bg-black/40 text-white placeholder-gray-500 outline-none transition-all duration-200 focus:border-cyan-400/70 focus:ring-2 focus:ring-cyan-400/25 focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:border-white/25 ${
-                  error ? 'border-red-500' : 'border-white/10'
+                className={`w-full px-4 py-3 rounded-xl border-2 bg-white text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:bg-black/40 dark:text-white dark:placeholder-gray-500 dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/25 dark:focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:hover:border-white/25 ${
+                  error ? 'border-red-700 dark:border-red-500' : 'border-stone-900/25 dark:border-white/10'
                 }`}
               />
               {error && (
-                <p className="mt-1.5 text-sm text-red-300" role="alert">
+                <p className="mt-1.5 text-sm font-medium text-red-800 dark:text-red-300" role="alert">
                   {error}
                 </p>
               )}
@@ -124,7 +124,7 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
         })}
       </div>
 
-      <p className="text-xs text-gray-500 leading-relaxed">
+      <p className="hand-note text-xs text-stone-500 leading-relaxed dark:text-gray-500 dark:not-italic dark:font-sans">
         Share only public profiles you are comfortable being contacted through. Handles (e.g. @nova) or full URLs both work.
       </p>
     </div>

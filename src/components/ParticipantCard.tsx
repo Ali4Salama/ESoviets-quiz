@@ -248,7 +248,7 @@ export function ParticipantCard({
         <button
           onClick={handleDownload}
           disabled={isGenerating}
-          className="w-full sm:w-auto px-6 py-4 text-base font-semibold text-white bg-red-600 rounded-xl hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black transition-colors min-h-[48px] touch-manipulation disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-6 py-4 text-base font-semibold rounded-xl border-2 transition-all duration-200 min-h-[48px] touch-manipulation disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 bg-red-800 text-amber-50 border-stone-900 shadow-[4px_4px_0_rgba(28,25,23,0.9)] hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2 focus:ring-offset-[#f6f1e5] dark:border-0 dark:bg-red-600 dark:text-white dark:shadow-none dark:hover:bg-red-500 dark:focus:ring-red-500 dark:focus:ring-offset-black"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -259,7 +259,7 @@ export function ParticipantCard({
         <button
           onClick={handleShare}
           disabled={isGenerating}
-          className="w-full sm:w-auto px-6 py-4 text-base font-medium text-white bg-gray-800 border border-gray-600 rounded-xl hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black transition-colors min-h-[48px] touch-manipulation disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-6 py-4 text-base font-medium rounded-xl border-2 transition-all duration-200 min-h-[48px] touch-manipulation disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 bg-white text-stone-800 border-stone-900/70 hover:shadow-[3px_3px_0_rgba(28,25,23,0.9)] focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2 focus:ring-offset-[#f6f1e5] dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:shadow-none dark:focus:ring-red-500 dark:focus:ring-offset-black"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />

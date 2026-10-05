@@ -66,9 +66,9 @@ export function TextQuestion({
 
   return (
     <div className="w-full">
-      <label htmlFor={groupId} className="block text-lg font-medium text-white mb-2">
+      <label htmlFor={groupId} className="font-display block text-xl font-bold text-stone-900 mb-2 dark:text-white">
         {label}
-        {required && <span className="text-red-400 ml-1" aria-hidden="true">*</span>}
+        {required && <span className="text-red-700 dark:text-red-400 ml-1" aria-hidden="true">*</span>}
       </label>
 
       <textarea
@@ -89,27 +89,27 @@ export function TextQuestion({
           .filter(Boolean)
           .join(' ')}
         aria-invalid={error ? 'true' : 'false'}
-        className={`w-full min-h-[120px] px-4 py-3 rounded-xl border-2 bg-black/40 backdrop-blur-md text-white placeholder-gray-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] focus:outline-none focus:ring-2 focus:ring-cyan-400/40 focus:border-cyan-300/60 focus:shadow-[0_0_24px_rgba(34,211,238,0.2)] transition-all duration-200 resize-none ${
+        className={`w-full min-h-[120px] px-4 py-3 rounded-xl border-2 bg-white text-stone-900 placeholder-stone-400 shadow-[inset_2px_2px_0_rgba(28,25,23,0.06)] focus:outline-none focus:ring-2 focus:ring-red-700/40 focus:border-red-800 transition-all duration-200 resize-none dark:bg-black/40 dark:backdrop-blur-md dark:text-white dark:placeholder-gray-500 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus:ring-cyan-400/40 dark:focus:border-cyan-300/60 dark:focus:shadow-[0_0_24px_rgba(34,211,238,0.2)] ${
           error
-            ? 'border-red-500'
+            ? 'border-red-700 dark:border-red-500'
             : isAtLimit
-            ? 'border-red-500'
+            ? 'border-red-700 dark:border-red-500'
             : isNearLimit
-            ? 'border-yellow-500'
-            : 'border-white/10 hover:border-white/25'
+            ? 'border-amber-600 dark:border-yellow-500'
+            : 'border-stone-900/25 hover:border-stone-900/60 dark:border-white/10 dark:hover:border-white/25'
         }`}
       />
 
       <div className="flex items-center justify-between mt-2">
         {helperText && (
-          <p id={helperId} className="text-sm text-gray-400">
+          <p id={helperId} className="hand-note text-sm text-stone-500 dark:text-gray-400 dark:not-italic dark:font-sans">
             {helperText}
           </p>
         )}
         {maxLength && (
           <span
             className={`text-sm font-mono transition-colors ${
-              isAtLimit ? 'text-red-400' : isNearLimit ? 'text-yellow-400' : 'text-gray-500'
+              isAtLimit ? 'text-red-700 dark:text-red-400' : isNearLimit ? 'text-amber-700 dark:text-yellow-400' : 'text-stone-400 dark:text-gray-500'
             }`}
             aria-live="polite"
           >
@@ -119,13 +119,13 @@ export function TextQuestion({
       </div>
 
       {error && (
-        <p id={errorId} className="mt-2 text-sm text-red-300" role="alert">
+        <p id={errorId} className="mt-2 text-sm font-medium text-red-800 dark:text-red-300" role="alert">
           {error}
         </p>
       )}
 
       {minLength && !error && charCount > 0 && charCount < minLength && (
-        <p className="mt-2 text-sm text-yellow-300" role="status">
+        <p className="mt-2 text-sm text-amber-700 dark:text-yellow-300" role="status">
           Minimum {minLength} characters (currently {charCount})
         </p>
       )}

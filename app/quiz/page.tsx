@@ -651,7 +651,7 @@ export default function QuizPage() {
               error={errors.delegateInterest}
               required
             />
-            <p className="text-sm text-gray-400 mt-4 p-3 bg-gray-900/50 rounded-lg border border-gray-800">
+            <p className="hand-note text-sm text-stone-600 mt-4 p-3 bg-amber-50 rounded-lg border-2 border-dashed border-stone-900/25 dark:text-gray-400 dark:bg-gray-900/50 dark:border-gray-800 dark:border-solid dark:not-italic dark:font-sans">
               <strong>Note:</strong> Delegate selection, if introduced, should be handled through the project&apos;s
               defined organizational process. This quiz only records your interest.
             </p>
@@ -732,15 +732,15 @@ export default function QuizPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <div className="p-4 bg-gray-900/50 border border-gray-800 rounded-xl mb-4">
-                <p className="text-sm text-gray-300">
+              <div className="p-4 bg-amber-50 border-2 border-dashed border-stone-900/30 rounded-xl mb-4 dark:bg-gray-900/50 dark:border-gray-800 dark:border-solid">
+                <p className="text-sm text-stone-700 dark:text-gray-300">
                   <strong>Privacy Notice:</strong> Your responses contain personal information. We collect them to
                   understand participation, organize volunteers, and contact you about E-Soviets. Your email will
                   not appear on your participant card.
                 </p>
               </div>
 
-              <label className="relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] border-gray-700 bg-gray-900/30 hover:border-gray-500 hover:bg-gray-900/50 focus-within:border-red-500 focus-within:bg-red-500/10 focus-within:ring-2 focus-within:ring-red-500/20">
+              <label className="relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] focus-within:border-red-800 focus-within:ring-2 focus-within:ring-red-700/30 dark:border-gray-700 dark:bg-gray-900/30 dark:hover:border-gray-500 dark:hover:bg-gray-900/50 dark:hover:shadow-none dark:focus-within:border-red-500 dark:focus-within:bg-red-500/10 dark:focus-within:ring-red-500/20">
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <input
                     type="checkbox"
@@ -756,7 +756,7 @@ export default function QuizPage() {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-500 peer-focus:ring-offset-2 peer-focus:ring-offset-black rounded-xl py-1">
-                  <span className="font-medium text-white text-sm leading-relaxed">
+                  <span className="font-medium text-stone-900 dark:text-white text-sm leading-relaxed">
                     I agree that E-Soviets may store my submitted contact information and questionnaire responses
                     for the purpose of organizing and contacting participants.
                   </span>
@@ -770,7 +770,7 @@ export default function QuizPage() {
                 </div>
               </label>
 
-              <label className="relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] border-gray-700 bg-gray-900/30 hover:border-gray-500 hover:bg-gray-900/50 focus-within:border-red-500 focus-within:bg-red-500/10 focus-within:ring-2 focus-within:ring-red-500/20">
+              <label className="relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] focus-within:border-red-800 focus-within:ring-2 focus-within:ring-red-700/30 dark:border-gray-700 dark:bg-gray-900/30 dark:hover:border-gray-500 dark:hover:bg-gray-900/50 dark:hover:shadow-none dark:focus-within:border-red-500 dark:focus-within:bg-red-500/10 dark:focus-within:ring-red-500/20">
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <input
                     type="checkbox"
@@ -786,7 +786,7 @@ export default function QuizPage() {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-500 peer-focus:ring-offset-2 peer-focus:ring-offset-black rounded-xl py-1">
-                  <span className="font-medium text-white text-sm leading-relaxed">
+                  <span className="font-medium text-stone-900 dark:text-white text-sm leading-relaxed">
                     I confirm that the information I submitted is accurate to the best of my knowledge.
                   </span>
                 </div>

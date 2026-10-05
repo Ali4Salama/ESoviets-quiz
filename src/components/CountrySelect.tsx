@@ -78,13 +78,13 @@ export function CountrySelect({
 
   return (
     <div ref={containerRef} className="w-full">
-      <label htmlFor={groupId} className="block text-lg font-medium text-white mb-2">
+      <label htmlFor={groupId} className="font-display block text-xl font-bold text-stone-900 mb-2 dark:text-white">
         {label}
-        {required && <span className="text-red-400 ml-1" aria-hidden="true">*</span>}
+        {required && <span className="text-red-700 dark:text-red-400 ml-1" aria-hidden="true">*</span>}
       </label>
 
       <div className="relative">
-        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-cyan-300/80" aria-hidden="true">
+        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-red-800 dark:text-cyan-300/80" aria-hidden="true">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z" />
             <circle cx="12" cy="10" r="2.5" />
@@ -110,8 +110,8 @@ export function CountrySelect({
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={handleKeyDown}
-          className={`w-full pl-12 pr-11 py-3.5 rounded-xl border-2 bg-white/[0.04] backdrop-blur-md text-white placeholder-gray-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] outline-none transition-all duration-200 focus:border-cyan-400/70 focus:ring-2 focus:ring-cyan-400/30 focus:shadow-[0_0_24px_rgba(34,211,238,0.25)] hover:border-white/25 ${
-            error ? 'border-red-500' : 'border-white/10'
+          className={`w-full pl-12 pr-11 py-3.5 rounded-xl border-2 bg-white text-stone-900 placeholder-stone-400 shadow-[inset_2px_2px_0_rgba(28,25,23,0.06)] outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/30 hover:border-stone-900/60 dark:bg-white/[0.04] dark:backdrop-blur-md dark:text-white dark:placeholder-gray-500 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/30 dark:focus:shadow-[0_0_24px_rgba(34,211,238,0.25)] dark:hover:border-white/25 ${
+            error ? 'border-red-700 dark:border-red-500' : 'border-stone-900/25 dark:border-white/10'
           }`}
         />
         {value && !open ? (
@@ -177,13 +177,13 @@ export function CountrySelect({
       </div>
 
       {value && !open && (
-        <p className="mt-2 text-sm text-cyan-200/80" role="status">
-          Selected: <span className="font-medium text-cyan-100">{value}</span>
+        <p className="hand-note mt-2 text-sm text-stone-600 dark:text-cyan-200/80 dark:not-italic dark:font-sans" role="status">
+          Selected: <span className="font-medium text-stone-900 dark:text-cyan-100">{value}</span> ✓
         </p>
       )}
 
       {error && (
-        <p id={errorId} className="mt-2 text-sm text-red-300" role="alert">
+        <p id={errorId} className="mt-2 text-sm font-medium text-red-800 dark:text-red-300" role="alert">
           {error}
         </p>
       )}
