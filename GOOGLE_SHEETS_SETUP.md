@@ -92,6 +92,22 @@ In Vercel dashboard → Project → Settings → Environment Variables, add:
 
 ## Troubleshooting
 
+**Quiz succeeds but no row appears in the sheet**
+
+1. Open `https://<your-app>.vercel.app/api/health` in a browser. It reports which of the 4
+   env vars are set in production (booleans only, no secrets).
+2. If any flag is `false`: Vercel dashboard → Project → Settings → Environment Variables →
+   add the missing variable(s) → **Redeploy** (env changes require a new deployment).
+3. If all flags are `true` but nothing arrives:
+   - Make sure you are looking at the spreadsheet whose ID is in `GOOGLE_SHEET_ID`
+     (compare with the `d/{SHEET_ID}/` part of the sheet URL).
+   - Make sure the tab name matches `GOOGLE_SHEET_NAME` exactly (`Responses` by default).
+   - Make sure that exact tab's row 1 has all **28 headers** in the order listed above.
+   - Make sure the service-account email (from the JSON key) is in the sheet's **Share**
+     list with **Editor** access.
+   - Check Vercel → Project → Logs for `Google Sheets append failed` — it logs the API
+     error code (`403` = sharing/API problem, `404` = wrong sheet ID or tab name).
+
 **"Missing Google Sheets environment variables"**
 - Verify all 4 env vars are set in Vercel
 - Check for typos in variable names

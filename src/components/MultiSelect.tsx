@@ -135,13 +135,15 @@ export function MultiSelect({
                   <label
                     key={option.value}
                     htmlFor={optionId}
-                    className={`relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] dark:backdrop-blur-md dark:bg-white/[0.03] dark:hover:border-cyan-300/40 dark:hover:bg-white/[0.06] dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] ${
-                      disabled
-                        ? 'opacity-50 cursor-not-allowed'
-                        : value.includes(option.value)
-                        ? 'border-red-800 bg-red-50 shadow-[3px_3px_0_rgba(28,25,23,0.9)] dark:border-red-500/70 dark:bg-gradient-to-r dark:from-red-500/15 dark:to-fuchsia-500/10 dark:shadow-[0_0_24px_rgba(220,38,38,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]'
-                        : ''
-                    } focus-within:border-red-800 dark:focus-within:border-cyan-300/60 dark:focus-within:ring-2 dark:focus-within:ring-cyan-400/25 ${error && !cat.category ? 'border-red-700 dark:border-red-500' : ''}`}
+                    className={`relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[56px] dark:backdrop-blur-md ${
+                      error && !cat.category
+                        ? 'border-red-700 bg-red-50 dark:border-red-500 dark:bg-red-500/10'
+                        : disabled
+                          ? 'bg-stone-100 border-stone-900/20 opacity-50 cursor-not-allowed dark:bg-white/[0.02] dark:border-white/10'
+                          : value.includes(option.value)
+                            ? 'border-red-800 bg-red-50 shadow-[3px_3px_0_rgba(28,25,23,0.9)] dark:border-red-500/70 dark:bg-gradient-to-r dark:from-red-500/15 dark:to-fuchsia-500/10 dark:shadow-[0_0_24px_rgba(220,38,38,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]'
+                            : 'bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] dark:bg-white/[0.03] dark:hover:border-cyan-300/40 dark:hover:bg-white/[0.06] dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]'
+                    } focus-within:border-red-800 dark:focus-within:border-cyan-300/60 dark:focus-within:ring-2 dark:focus-within:ring-cyan-400/25`}
                   >
                     <div className="flex items-center gap-3 flex-shrink-0">
                       <input
@@ -161,12 +163,12 @@ export function MultiSelect({
                         className="sr-only peer"
                         required={required_ && catIndex === 0 && optIndex === 0}
                       />
-                      <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 bg-white dark:bg-gray-800 ${
+                      <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
                         disabled
-                          ? 'border-stone-400 dark:border-gray-600'
+                          ? 'bg-stone-100 border-stone-400 dark:bg-gray-800 dark:border-gray-600'
                           : value.includes(option.value)
-                          ? 'border-red-800 bg-red-800 dark:border-red-500 dark:bg-red-500 dark:shadow-[0_0_0_2px_rgba(204,0,0,0.3)]'
-                          : 'border-stone-500 hover:border-stone-900 dark:border-gray-500 dark:hover:border-gray-400'
+                            ? 'border-red-800 bg-red-800 dark:border-red-500 dark:bg-red-500 dark:shadow-[0_0_0_2px_rgba(204,0,0,0.3)]'
+                            : 'bg-white border-stone-500 hover:border-stone-900 dark:bg-gray-800 dark:border-gray-500 dark:hover:border-gray-400'
                       }`} aria-hidden="true">
                         {value.includes(option.value) && (
                           <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">

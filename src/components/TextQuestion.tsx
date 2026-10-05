@@ -89,14 +89,12 @@ export function TextQuestion({
           .filter(Boolean)
           .join(' ')}
         aria-invalid={error ? 'true' : 'false'}
-        className={`w-full min-h-[120px] px-4 py-3 rounded-xl border-2 bg-white text-stone-900 placeholder-stone-400 shadow-[inset_2px_2px_0_rgba(28,25,23,0.06)] focus:outline-none focus:ring-2 focus:ring-red-700/40 focus:border-red-800 transition-all duration-200 resize-none dark:bg-black/40 dark:backdrop-blur-md dark:text-white dark:placeholder-gray-500 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus:ring-cyan-400/40 dark:focus:border-cyan-300/60 dark:focus:shadow-[0_0_24px_rgba(34,211,238,0.2)] ${
-          error
-            ? 'border-red-700 dark:border-red-500'
-            : isAtLimit
-            ? 'border-red-700 dark:border-red-500'
+        className={`w-full min-h-[120px] px-4 py-3 rounded-xl border-2 text-stone-900 placeholder-stone-400 shadow-[inset_2px_2px_0_rgba(28,25,23,0.06)] focus:outline-none focus:ring-2 focus:ring-red-700/40 focus:border-red-800 transition-all duration-200 resize-none dark:backdrop-blur-md dark:text-white dark:placeholder-gray-500 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] dark:focus:ring-cyan-400/40 dark:focus:border-cyan-300/60 dark:focus:shadow-[0_0_24px_rgba(34,211,238,0.2)] ${
+          error || isAtLimit
+            ? 'bg-red-50 border-red-700 dark:bg-black/40 dark:border-red-500'
             : isNearLimit
-            ? 'border-amber-600 dark:border-yellow-500'
-            : 'border-stone-900/25 hover:border-stone-900/60 dark:border-white/10 dark:hover:border-white/25'
+              ? 'bg-white border-amber-600 dark:bg-black/40 dark:border-yellow-500'
+              : 'bg-white border-stone-900/25 hover:border-stone-900/60 dark:bg-black/40 dark:border-white/10 dark:hover:border-white/25'
         }`}
       />
 

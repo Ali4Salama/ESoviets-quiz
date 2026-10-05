@@ -110,8 +110,8 @@ export function SocialInputs({ values, onChange, errors = {} }: SocialInputsProp
                 onChange={(e) => onChange(field.key, e.target.value)}
                 placeholder={field.placeholder}
                 aria-invalid={error ? 'true' : 'false'}
-                className={`w-full px-4 py-3 rounded-xl border-2 bg-white text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:bg-black/40 dark:text-white dark:placeholder-gray-500 dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/25 dark:focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:hover:border-white/25 ${
-                  error ? 'border-red-700 dark:border-red-500' : 'border-stone-900/25 dark:border-white/10'
+                className={`w-full px-4 py-3 rounded-xl border-2 text-stone-900 placeholder-stone-400 outline-none transition-all duration-200 focus:border-red-800 focus:ring-2 focus:ring-red-700/25 hover:border-stone-900/60 dark:text-white dark:placeholder-gray-500 dark:focus:border-cyan-400/70 dark:focus:ring-cyan-400/25 dark:focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:hover:border-white/25 ${
+                  error ? 'bg-red-50 border-red-700 dark:bg-black/40 dark:border-red-500' : 'bg-white border-stone-900/25 dark:bg-black/40 dark:border-white/10'
                 }`}
               />
               {error && (

@@ -77,11 +77,13 @@ export function SingleSelect({
             <label
               key={option.value}
               htmlFor={optionId}
-              className={`relative flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[44px] bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] dark:backdrop-blur-md dark:bg-white/[0.03] dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] dark:hover:border-cyan-300/40 dark:hover:bg-white/[0.06] ${
-                isSelected
-                  ? 'border-red-800 bg-red-50 shadow-[3px_3px_0_rgba(28,25,23,0.9)] dark:border-red-500/70 dark:bg-gradient-to-r dark:from-red-500/15 dark:to-fuchsia-500/10 dark:shadow-[0_0_24px_rgba(220,38,38,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]'
-                  : ''
-              } focus-within:border-red-800 dark:focus-within:border-cyan-300/60 dark:focus-within:shadow-[0_0_20px_rgba(34,211,238,0.25)] ${error ? 'border-red-700 dark:border-red-500' : ''}`}
+              className={`relative flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer touch-manipulation min-h-[44px] dark:backdrop-blur-md ${
+                error
+                  ? 'border-red-700 bg-red-50 dark:border-red-500 dark:bg-red-500/10'
+                  : isSelected
+                    ? 'border-red-800 bg-red-50 shadow-[3px_3px_0_rgba(28,25,23,0.9)] dark:border-red-500/70 dark:bg-gradient-to-r dark:from-red-500/15 dark:to-fuchsia-500/10 dark:shadow-[0_0_24px_rgba(220,38,38,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]'
+                    : 'bg-white border-stone-900/25 hover:border-stone-900/60 hover:shadow-[3px_3px_0_rgba(28,25,23,0.85)] dark:bg-white/[0.03] dark:hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] dark:hover:border-cyan-300/40 dark:hover:bg-white/[0.06]'
+              } focus-within:border-red-800 dark:focus-within:border-cyan-300/60 dark:focus-within:shadow-[0_0_20px_rgba(34,211,238,0.25)]`}
             >
               <input
                 type="radio"
@@ -108,8 +110,10 @@ export function SingleSelect({
                 )}
               </div>
               <div
-                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors bg-white dark:bg-transparent ${
-                  isSelected ? 'border-red-800 bg-red-800 dark:border-red-500 dark:bg-red-500' : 'border-stone-500 dark:border-gray-500'
+                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                  isSelected
+                    ? 'border-red-800 bg-red-800 dark:border-red-500 dark:bg-red-500'
+                    : 'bg-white border-stone-500 dark:bg-transparent dark:border-gray-500'
                 }`}
                 aria-hidden="true"
               >
